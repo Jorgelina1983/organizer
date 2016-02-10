@@ -1,0 +1,53 @@
+<%- model_class = Person -%>
+
+<%= render :partial => "layouts/search", :locals => { :title => "Listado de Personas"} %>
+
+<%= link_to new_person_path, :class => 'btn btn-primary' do %>
+  <span class="glyphicon glyphicon-plus white" aria-hidden="true"> Nueva</span>
+<% end %>
+<br/><br/>
+<table class="table table-striped">
+  <thead>
+    <tr>      
+      <th><%= "Nombre" %></th>
+      <th><%= "Apellido" %></th>
+      <th><%= "DNI" %></th>
+      <th><%= "Beneficio" %></th>
+      <th><%= "Celular" %></th>
+      <th><%= "Fijo" %></th>
+      <th><%= "Fec. Nac." %></th>
+      <th><%= "Edad" %> </th>
+      <th><%= "Direccion" %></th>
+      <th><%= "Socio" %></th>
+      <th><%= "***Acciones****" %></th>
+    </tr>
+  </thead>
+  <tbody class="searchable">
+    <% @people.each do |person| %>
+      <tr>       
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.identification %></td>
+        <td><%= person.benefit %></td>
+        <td><%= person.cell_phone %></td>
+        <td><%= person.phone %></td>
+        <td><%= person.dob_formatted %></td>
+        <td><%= person.age %></td>
+        <td><%= person.full_address %></td>        
+        <td><%= person.associated ? "SI" : "NO" %></td>        
+        <td>
+          <%= link_to edit_person_path(person), :class => 'btn btn-info' do %>
+            <span class="glyphicon glyphicon-pencil white" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to person_path(person), :method => :delete, :data => { :confirm => "Esta seguro?" }, :class => 'btn btn-danger' do %>
+            <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
+          <% end %>
+           <%= link_to person_path(person), :class => 'btn btn-success' do %>
+            <span class="glyphicon glyphicon-plus white" aria-hidden="true"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

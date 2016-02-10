@@ -1,0 +1,26 @@
+<div class="row search-box">
+<h3 class="search-title"><%= title %></h3>
+	<div class="col-sm-3 col-md-3 pull-right">	
+		  <div class="input-group">
+		    <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">
+		    <div class="input-group-btn">
+		      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+		    </div>
+		  </div>	
+	</div>
+</div>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+	$(document).ready(function () {
+	    (function ($) {
+	        $('#srch-term').keyup(function () {
+	            var rex = new RegExp($(this).val(), 'i');
+	            $('.searchable tr').hide();
+	            $('.searchable tr').filter(function () {
+	                return rex.test($(this).text());
+	            }).show();
+	        })
+	    }(jQuery));
+	});
+</script>  

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VIAJES CJSM</title>
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    "application.css", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" rel="home" href="/" title="CJSM TURISMO">CJSM TURISMO</a>
+  </div>
+  
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    
+    <ul class="nav navbar-nav">
+     <!--  <li><a href="/">/notes</a></li>
+      <li><a href="/topic/dev/">/dev</a></li>
+      <li><a href="/topic/good-reads/">/good-reads</a></li>
+      <li><a href="/topic/art/">/art</a></li>
+      <li><a href="/topic/bookmarks/">/bookmarks</a></li>
+      <li><a href="/all-topics/">/all</a></li> -->
+      <li><a href="/lists">Listados</a></li>
+      <li><a href="/schemas">Esquemas</a></li>     
+    </ul>        
+  </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span12"><%= yield %></div>
+    </div>
+  </div>
+</body>
+</html>

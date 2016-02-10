@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree .
+*/
+
+body { 
+	padding-top: 60px; 
+	font-size: 8px;
+}
+
+/* Property for button background */
+.white{
+ 	color: white; important!
+ }
+
+.form-person {
+	width: 60%;
+	margin:20px;
+	padding: 30px;
+	background-color: #EBE7E6;
+	border-radius: 25px;
+}
+.table thead {
+	background:lavender;
+}
+
+
+/* Search partial view */
+.search-title {
+	width: 30%;
+    margin: 5px;
+    float: left;
+}
+.search-box {
+	padding: 10px;
+    background: #EBE7E6;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+/* --------------------------- */

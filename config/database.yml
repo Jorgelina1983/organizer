@@ -1,0 +1,59 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install mysql
+# On Mac OS X:
+#   sudo gem install mysql -- --with-mysql-dir=/usr/local/mysql
+# On Mac OS X Leopard:
+#   sudo env ARCHFLAGS="-arch i386" gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+#       This sets the ARCHFLAGS environment variable to your native architecture
+# On Windows:
+#   gem install mysql
+#       Choose the win32 build.
+#       Install MySQL and put its /bin directory on your path.
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: organizer
+  username: root
+  password: sa
+  host: localhost
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: stroke_test
+  username: rails
+  password: rails
+  host: localhost
+  
+# This environment is used on the staging server.
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: prod_sep30
+  username: rails
+  password: itt-2011
+  host: clinapps-db-train
+
+  # adapter: mysql2
+  # encoding: utf8
+  # database: stroke_stage_db
+  # username: rails
+  # password: rails
+  # host: localhost 
+
+# # This environment is used on the production server.
+# production:
+#   adapter: mysql2
+#   encoding: utf8
+#   database: stroke_stage
+#   username: rails
+#   password: itt-2011
+#   host: StrokeDB

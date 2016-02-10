@@ -1,0 +1,55 @@
+<%= form_for @schema, :html => { :class => "form-horizontal schema" } do |f| %>
+
+  <% if @schema.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@schema.errors.count, "error") %> prohibited this schema from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @schema.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :seats, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :seats, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:seats) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :company, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :company, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:company) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :seats_schema, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :seats_schema, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:seats_schema) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                schemas_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
