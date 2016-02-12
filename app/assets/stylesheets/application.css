@@ -12,7 +12,7 @@ body {
 }
 
 /* Property for button background */
-.white{
+.white {
  	color: white; important!
  }
 
@@ -25,6 +25,22 @@ body {
 }
 .table thead {
 	background:lavender;
+}
+
+.day {
+	width: 10% !important;
+}
+
+.month {
+	width: 30% !important;
+}
+.year {
+	width: 20% !important;
+}
+
+.associated_chkbox{
+	width: 5%;
+	margin-left: 0px;
 }
 
 

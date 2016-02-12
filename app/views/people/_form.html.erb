@@ -3,34 +3,27 @@
   <% if @person.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @person.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+        <h3 class="panel-title"> Corrija los errores: </h3>
+      </div>      
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :first_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :first_name, "Nombre", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :first_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:first_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :last_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :last_name, "Apellido", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :last_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:last_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :identification, :class => 'control-label col-lg-2' %>
+    <%= f.label :identification, "DNI", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :identification, :class => 'form-control' %>
     </div>
@@ -59,8 +52,8 @@
   </div>
   <div class="form-group">
     <%= f.label :dob, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :dob, :class => 'form-control' %>
+    <div class="col-lg-10" style="display:flex;" >
+      <%= f.date_select :dob, {:start_year => Time.now.year - 114, :end_year => Time.now.year, :include_blank => true, order: [:day, :month, :year], use_month_names: get_months_sp, :with_css_classes => true }, :class => 'form-control' %>
     </div>
     <%=f.error_span(:dob) %>
   </div>
@@ -81,7 +74,7 @@
   <div class="form-group">
     <%= f.label :associated, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :associated, :class => 'form-control' %>
+      <%= f.check_box :associated, :class => 'form-control associated_chkbox' %>
     </div>
     <%=f.error_span(:associated) %>
   </div>
