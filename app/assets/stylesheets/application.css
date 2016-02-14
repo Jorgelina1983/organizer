@@ -24,6 +24,11 @@ body {
 }
 .table thead {
 	background:lavender;
+	font-size: small;
+}
+
+.table tbody tr td{
+	font-size: x-small;
 }
 
 .day {
