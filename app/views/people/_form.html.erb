@@ -1,4 +1,4 @@
-<%= form_for @person, :html => { :class => "form-horizontal person" } do |f| %>
+<%= form_for @person, :html => { :class => "form-horizontal person form-person" } do |f| %>
 
   <% if @person.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -30,30 +30,31 @@
     <%=f.error_span(:identification) %>
   </div>
   <div class="form-group">
-    <%= f.label :benefit, :class => 'control-label col-lg-2' %>
+    <%= f.label :benefit, "Beneficio", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :benefit, :class => 'form-control' %>
     </div>
     <%=f.error_span(:benefit) %>
   </div>
   <div class="form-group">
-    <%= f.label :cell_phone, :class => 'control-label col-lg-2' %>
+    <%= f.label :cell_phone, "Celular", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :cell_phone, :class => 'form-control' %>
     </div>
     <%=f.error_span(:cell_phone) %>
   </div>
   <div class="form-group">
-    <%= f.label :phone, :class => 'control-label col-lg-2' %>
+    <%= f.label :phone, "Fijo", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :phone, :class => 'form-control' %>
     </div>
     <%=f.error_span(:phone) %>
   </div>
   <div class="form-group">
-    <%= f.label :dob, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10" style="display:flex;" >
+    <%= f.label :dob, "Fecha Nac.", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10 date-display" >
       <%= f.date_select :dob, {:start_year => Time.now.year - 114, :end_year => Time.now.year, :include_blank => true, order: [:day, :month, :year], use_month_names: get_months_sp, :with_css_classes => true }, :class => 'form-control' %>
+      <span class="message">(Dia/Mes/Año)</span>
     </div>
     <%=f.error_span(:dob) %>
   </div>
@@ -74,7 +75,7 @@
   <div class="form-group">
     <%= f.label :associated, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.check_box :associated, :class => 'form-control associated_chkbox' %>
+      <%= f.check_box :associated, :class => 'associated-chkbox form-control' %>
     </div>
     <%=f.error_span(:associated) %>
   </div>
