@@ -29,8 +29,7 @@ class PeopleController < ApplicationController
 
   # POST /people
   # POST /people.json
-  def create
-    binding.pry
+  def create    
     @person = Person.new(person_params)
 
     respond_to do |format|
