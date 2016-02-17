@@ -79,6 +79,13 @@
     </div>
     <%=f.error_span(:associated) %>
   </div>
+  <div class="form-group">
+    <%= f.label :associated_number, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :associated_number, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:associated_number) %>
+  </div>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

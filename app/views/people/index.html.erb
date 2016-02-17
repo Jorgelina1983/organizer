@@ -16,24 +16,24 @@
 <table class="table table-striped">
   <thead>
     <tr>
-    <th> <%= "NroSoc" %> </th> 
-      <th><%= "Apellido" %></th>
-      <th><%= "Nombre" %></th>
-      <th><%= "Direccion" %></th>
-      <th><%= "Fec.Nac." %></th>
-      <th><%= "Edad" %> </th>
-      <th><%= "DNI" %></th>
-      <th><%= "Fijo" %></th>
-      <th><%= "Celular" %></th>
-      <th><%= "Beneficio" %></th>
-      <th><%= "Socio" %></th>
-      <th><%= "***Acciones****" %></th>
+      <th>NroSoc </th> 
+      <th>Apellido</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Fec.Nac.</th>
+      <th>Edad</th>
+      <th>DNI</th>
+      <th>Fijo</th>
+      <th>Celular</th>
+      <th>Beneficio</th>
+      <th>Socio</th>
+      <th>***Acciones****</th>
     </tr>
   </thead>
   <tbody class="searchable">
     <% @people.each do |person| %>
       <tr>
-      <td><%= person.id %></td>        
+        <td><%= person.associated_number == 0 ? "" : person.associated_number %></td>        
         <td><%= person.last_name %></td>
         <td><%= person.first_name %></td>
         <td><%= person.full_address %></td>  

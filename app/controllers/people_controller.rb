@@ -30,6 +30,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
+    binding.pry
     @person = Person.new(person_params)
 
     respond_to do |format|
@@ -67,6 +68,14 @@ class PeopleController < ApplicationController
     end
   end
 
+  def associated
+    if session[:id].blank? || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
+    @people = Person.where(associated: true).order(:last_name)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
@@ -83,6 +92,7 @@ class PeopleController < ApplicationController
                                       :phone, 
                                       :dob, 
                                       :address, 
-                                      :associated )
+                                      :associated,
+                                      :associated_number )
     end
 end
