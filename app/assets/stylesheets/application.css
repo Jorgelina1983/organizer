@@ -13,7 +13,7 @@ body {
 
 /* Property for button background */
 .white{
- 	color: white; important!
+ 	color: white !important;
  }
 
 .form-person {
@@ -25,8 +25,11 @@ body {
 }
 .table thead {
 	background:lavender;
+	font-size: small;
 }
 
+.table tbody tr td {
+}
 
 /* Search partial view */
 .search-title {

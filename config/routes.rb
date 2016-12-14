@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/destroy'
+
   resources :schemas
   resources :lists
   #resources :users
@@ -14,7 +18,12 @@ Rails.application.routes.draw do
 
   post 'index' => 'users#login'
 
-    # You can have the root of your site routed with "root"
+  # Paths for creating sessions.
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
+   # You can have the root of your site routed with "root"
   root 'people#index'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

@@ -3,14 +3,15 @@
 <%= render :partial => "layouts/search", :locals => { :title => "Listado de Personas"} %>
 
 <%= link_to new_person_path, :class => 'btn btn-primary' do %>
-  <span class="glyphicon glyphicon-plus white" aria-hidden="true"> Nueva</span>
+  <span class="glyphicon glyphicon-plus white" aria-hidden="true"> </span>
+  Nueva
 <% end %>
 <br/><br/>
 <table class="table table-striped">
   <thead>
-    <tr>      
-      <th><%= "Nombre" %></th>
+    <tr>
       <th><%= "Apellido" %></th>
+      <th><%= "Nombre" %></th> 
       <th><%= "DNI" %></th>
       <th><%= "Beneficio" %></th>
       <th><%= "Celular" %></th>
@@ -24,9 +25,9 @@
   </thead>
   <tbody class="searchable">
     <% @people.each do |person| %>
-      <tr>       
+      <tr>
+        <td><%= person.last_name %></td>  
         <td><%= person.first_name %></td>
-        <td><%= person.last_name %></td>
         <td><%= person.identification %></td>
         <td><%= person.benefit %></td>
         <td><%= person.cell_phone %></td>
@@ -50,4 +51,3 @@
     <% end %>
   </tbody>
 </table>
-

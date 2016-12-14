@@ -16,3 +16,7 @@
 !/log/.keep
 /tmp
 /config/database.yml
+*.xls
+*.csv
+.byebug_history
+.rake_tasks~

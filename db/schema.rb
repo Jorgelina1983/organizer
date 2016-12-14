@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,56 +12,51 @@
 
 ActiveRecord::Schema.define(version: 20160207223141) do
 
-  create_table "lists", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.integer  "schema_id",  limit: 4
-    t.string   "columns",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "logins", force: :cascade do |t|
+  create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.integer  "schema_id"
+    t.string   "columns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string   "first_name",     limit: 255
-    t.string   "last_name",      limit: 255
-    t.string   "identification", limit: 255
-    t.string   "benefit",        limit: 255
-    t.string   "cell_phone",     limit: 255
-    t.string   "phone",          limit: 255
+  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "identification"
+    t.string   "benefit"
+    t.string   "cell_phone"
+    t.string   "phone"
     t.date     "dob"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "address",        limit: 255
-    t.string   "address_number", limit: 255
-    t.boolean  "associated",                 default: false, null: false
+    t.string   "address"
+    t.string   "address_number"
+    t.boolean  "associated",     default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
-  create_table "person_lists", force: :cascade do |t|
-    t.integer  "person_id",  limit: 4,   null: false
-    t.integer  "list_id",    limit: 4,   null: false
-    t.string   "payments",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "person_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "list_id",    null: false
+    t.string   "payments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "schemas", force: :cascade do |t|
-    t.string   "name",         limit: 255, null: false
-    t.integer  "seats",        limit: 4,   null: false
-    t.string   "company",      limit: 255
-    t.string   "seats_schema", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",         null: false
+    t.integer  "seats",        null: false
+    t.string   "company"
+    t.string   "seats_schema"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "username",   limit: 255
-    t.string   "password",   limit: 255
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
