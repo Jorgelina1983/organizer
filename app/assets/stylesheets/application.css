@@ -11,9 +11,13 @@ body {
 	font-size: 8px;
 }
 
+.container {
+  width: 96% !important;
+}
+
 /* Property for button background */
-.white {
- 	color: white; important!
+.white{
+ 	color: white !important;
  }
 
 .form-person {
@@ -22,13 +26,14 @@ body {
 	background-color: #EBE7E6;
 	border-radius: 25px;
 }
+
 .table thead {
 	background:lavender;
 	font-size: small;
 }
 
-.table tbody tr td{
-	font-size: x-small;
+.table tbody tr td {
+	font-size: small;
 }
 
 .day {
@@ -65,6 +70,7 @@ body {
     margin: 5px;
     float: left;
 }
+
 .search-box {
 	padding: 10px;
     background: #EBE7E6;
@@ -72,3 +78,8 @@ body {
     border-radius: 10px;
 }
 /* --------------------------- */
+
+#logo {
+	width: 50%;
+	margin-left: 30px;
+}

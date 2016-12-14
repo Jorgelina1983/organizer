@@ -9,7 +9,10 @@ class CreatePeople < ActiveRecord::Migration
       t.string :cell_phone
       t.string :phone
       t.date :dob
-
+      t.string :address
+      t.string :address_number
+      t.boolean :associated, null: false, default: false
+       
       t.timestamps null: false
     end
   end

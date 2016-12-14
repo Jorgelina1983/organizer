@@ -1,4 +1,4 @@
-class AddPersonListsTable < ActiveRecord::Migration
+class CreatePersonLists < ActiveRecord::Migration
   def change
   	create_table :person_lists do |t|     
       t.integer :person_id, null: false

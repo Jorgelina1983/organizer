@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
 
-    if session[:id].blank? || User.find(session[:id]).nil?
+    if session[:id].blank? # || User.find(session[:id]).nil?
       redirect_to '/login'
     end
 

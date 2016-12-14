@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   def login    
     user = User.new(user_params)  
     
-    if (user.username == 'guille' && user.password == 'caca')
+    if (user.username == 'centro' && user.password == '2017')
       session[:id] = 1
       redirect_to people_url
     end
@@ -81,6 +81,5 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.   
     def user_params
       params.require(:user).permit(:username, :password)
-    end
-    
+    end    
 end
