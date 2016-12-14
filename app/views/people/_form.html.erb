@@ -1,66 +1,60 @@
-<%= form_for @person, :html => { :class => "form-horizontal person" } do |f| %>
+<%= form_for @person, :html => { :class => "form-horizontal person form-person" } do |f| %>
 
   <% if @person.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @person.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+        <h3 class="panel-title"> Corrija los errores: </h3>
+      </div>      
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :first_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :first_name, "Nombre", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :first_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:first_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :last_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :last_name, "Apellido", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :last_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:last_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :identification, :class => 'control-label col-lg-2' %>
+    <%= f.label :identification, "DNI", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :identification, :class => 'form-control' %>
     </div>
     <%=f.error_span(:identification) %>
   </div>
   <div class="form-group">
-    <%= f.label :benefit, :class => 'control-label col-lg-2' %>
+    <%= f.label :benefit, "Beneficio", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :benefit, :class => 'form-control' %>
     </div>
     <%=f.error_span(:benefit) %>
   </div>
   <div class="form-group">
-    <%= f.label :cell_phone, :class => 'control-label col-lg-2' %>
+    <%= f.label :cell_phone, "Celular", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :cell_phone, :class => 'form-control' %>
     </div>
     <%=f.error_span(:cell_phone) %>
   </div>
   <div class="form-group">
-    <%= f.label :phone, :class => 'control-label col-lg-2' %>
+    <%= f.label :phone, "Fijo", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :phone, :class => 'form-control' %>
     </div>
     <%=f.error_span(:phone) %>
   </div>
   <div class="form-group">
-    <%= f.label :dob, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :dob, :class => 'form-control' %>
+    <%= f.label :dob, "Fecha Nac.", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10 date-display" >
+      <%= f.date_select :dob, {:start_year => Time.now.year - 114, :end_year => Time.now.year, :include_blank => true, order: [:day, :month, :year], use_month_names: get_months_sp, :with_css_classes => true }, :class => 'form-control' %>
+      <span class="message">(Dia/Mes/Año)</span>
     </div>
     <%=f.error_span(:dob) %>
   </div>
@@ -81,16 +75,22 @@
   <div class="form-group">
     <%= f.label :associated, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :associated, :class => 'form-control' %>
+      <%= f.check_box :associated, :class => 'associated-chkbox form-control' %>
     </div>
     <%=f.error_span(:associated) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :associated_number, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :associated_number, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:associated_number) %>
   </div>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                people_path, :class => 'btn btn-default' %>
+      <%= f.submit action_text, :class => 'btn btn-primary' %>
+      <%= link_to cancel_text, people_path, :class => 'btn btn-default' %>
     </div>
   </div>
 

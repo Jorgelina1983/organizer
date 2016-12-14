@@ -12,12 +12,11 @@ body {
 }
 
 /* Property for button background */
-.white{
+.white {
  	color: white; important!
  }
 
 .form-person {
-	width: 60%;
 	margin:20px;
 	padding: 30px;
 	background-color: #EBE7E6;
@@ -25,12 +24,44 @@ body {
 }
 .table thead {
 	background:lavender;
+	font-size: small;
 }
 
+.table tbody tr td{
+	font-size: x-small;
+}
+
+.day {
+	width: 10% !important;
+	margin-right: 10px !important;
+}
+
+.month {
+	width: 30% !important;
+	margin-right: 10px !important;
+}
+.year {
+	width: 20% !important;
+	margin-right: 10px !important;
+}
+
+.associated-chkbox{
+	width: 5% !important;
+	margin-left: 0px !important;
+}
+
+.date-display{
+	display: flex;
+}
+
+.message{
+	margin-top: 5px; 
+	font-style: italic; 
+	color: grey;
+}
 
 /* Search partial view */
 .search-title {
-	width: 30%;
     margin: 5px;
     float: left;
 }

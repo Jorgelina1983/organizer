@@ -29,12 +29,12 @@ class PeopleController < ApplicationController
 
   # POST /people
   # POST /people.json
-  def create
+  def create    
     @person = Person.new(person_params)
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
+        format.html { redirect_to people_url, notice: 'La persona fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @person }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @person, notice: 'La persona fue editada exitosamente.' }
         format.json { render :show, status: :ok, location: @person }
       else
         format.html { render :edit }
@@ -62,9 +62,17 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     respond_to do |format|
-      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
+      format.html { redirect_to people_url, notice: 'La persona fue eliminada exitosamente.' }
       format.json { head :no_content }
     end
+  end
+
+  def associated
+    if session[:id].blank? || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
+    @people = Person.where(associated: true).order(:last_name)
   end
 
   private
@@ -83,6 +91,7 @@ class PeopleController < ApplicationController
                                       :phone, 
                                       :dob, 
                                       :address, 
-                                      :associated )
+                                      :associated,
+                                      :associated_number )
     end
 end

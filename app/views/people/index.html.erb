@@ -1,5 +1,12 @@
 <%- model_class = Person -%>
 
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+<% end %>
+<% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+
 <%= render :partial => "layouts/search", :locals => { :title => "Listado de Personas"} %>
 
 <%= link_to new_person_path, :class => 'btn btn-primary' do %>
@@ -8,32 +15,34 @@
 <br/><br/>
 <table class="table table-striped">
   <thead>
-    <tr>      
-      <th><%= "Nombre" %></th>
-      <th><%= "Apellido" %></th>
-      <th><%= "DNI" %></th>
-      <th><%= "Beneficio" %></th>
-      <th><%= "Celular" %></th>
-      <th><%= "Fijo" %></th>
-      <th><%= "Fec. Nac." %></th>
-      <th><%= "Edad" %> </th>
-      <th><%= "Direccion" %></th>
-      <th><%= "Socio" %></th>
-      <th><%= "***Acciones****" %></th>
+    <tr>
+      <th>NroSoc </th> 
+      <th>Apellido</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Fec.Nac.</th>
+      <th>Edad</th>
+      <th>DNI</th>
+      <th>Fijo</th>
+      <th>Celular</th>
+      <th>Beneficio</th>
+      <th>Socio</th>
+      <th>***Acciones****</th>
     </tr>
   </thead>
   <tbody class="searchable">
     <% @people.each do |person| %>
-      <tr>       
-        <td><%= person.first_name %></td>
+      <tr>
+        <td><%= person.associated_number == 0 ? "" : person.associated_number %></td>        
         <td><%= person.last_name %></td>
-        <td><%= person.identification %></td>
-        <td><%= person.benefit %></td>
-        <td><%= person.cell_phone %></td>
-        <td><%= person.phone %></td>
+        <td><%= person.first_name %></td>
+        <td><%= person.full_address %></td>  
         <td><%= person.dob_formatted %></td>
-        <td><%= person.age %></td>
-        <td><%= person.full_address %></td>        
+        <td><%= person.age %></td>   
+        <td><%= person.identification %></td>
+        <td><%= person.phone %></td>
+        <td><%= person.cell_phone %></td>
+        <td><%= person.benefit %></td>
         <td><%= person.associated ? "SI" : "NO" %></td>        
         <td>
           <%= link_to edit_person_path(person), :class => 'btn btn-info' do %>
