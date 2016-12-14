@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'users' => 'users#login'
 
   post 'index' => 'users#login'
+  get 'people/associated' => 'person#associated'
 
   # Paths for creating sessions.
   get    '/login',   to: 'sessions#new'

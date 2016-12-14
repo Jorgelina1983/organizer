@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207223141) do
+ActiveRecord::Schema.define(version: 20160214162703) do
 
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20160207223141) do
     t.date     "dob"
     t.string   "address"
     t.string   "address_number"
-    t.boolean  "associated",     default: false, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "associated",        default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "associated_number", default: 0,     null: false
   end
 
   create_table "person_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
