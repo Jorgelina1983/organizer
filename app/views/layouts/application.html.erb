@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VIAJES CJSM</title>
-  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%#= csrf_meta_tags %>
-
+  <title>VIAJES CJSM</title>  
   <%= stylesheet_link_tag    "application.css", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -25,13 +21,9 @@
   
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     
-    <ul class="nav navbar-nav">
-     <!--  <li><a href="/">/notes</a></li>
-      <li><a href="/topic/dev/">/dev</a></li>
-      <li><a href="/topic/good-reads/">/good-reads</a></li>
-      <li><a href="/topic/art/">/art</a></li>
-      <li><a href="/topic/bookmarks/">/bookmarks</a></li>-->
-      <li><a href="/people/associated">Socios</a></li> 
+    <ul class="nav navbar-nav">    
+      <li><a href="/associated">Socios</a></li>
+      <li><a href="/travelers">Viajes</a></li> 
       <li><a href="/lists">Listados</a></li>
       <li><a href="/schemas">Esquemas</a></li>     
     </ul>        
@@ -40,7 +32,15 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="span12"><%= yield %></div>
+      <div class="span12">
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:error] %>
+            <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+        <% end %>     
+        <%= yield %>
+      </div>
     </div>
   </div>
 </body>

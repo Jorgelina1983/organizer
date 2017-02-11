@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214162703) do
+ActiveRecord::Schema.define(version: 20170116031512) do
 
-  create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",       null: false
     t.integer  "schema_id"
     t.string   "columns"
@@ -20,7 +20,12 @@ ActiveRecord::Schema.define(version: 20160214162703) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "logins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "identification"
@@ -28,23 +33,25 @@ ActiveRecord::Schema.define(version: 20160214162703) do
     t.string   "cell_phone"
     t.string   "phone"
     t.date     "dob"
-    t.string   "address"
-    t.string   "address_number"
-    t.boolean  "associated",        default: false, null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.integer  "associated_number", default: 0,     null: false
+    t.string   "address"
+    t.string   "address_number"
+    t.boolean  "traveler",          default: false, null: false
+    t.integer  "associated_number", default: 0
   end
 
-  create_table "person_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "person_id",  null: false
-    t.integer  "list_id",    null: false
-    t.string   "payments"
+  create_table "person_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "person_id"
+    t.integer  "list_id"
+    t.integer  "position"
+    t.index ["list_id"], name: "index_person_lists_on_list_id", using: :btree
+    t.index ["person_id"], name: "index_person_lists_on_person_id", using: :btree
   end
 
-  create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",         null: false
     t.integer  "seats",        null: false
     t.string   "company"
@@ -53,11 +60,11 @@ ActiveRecord::Schema.define(version: 20160214162703) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "username"
-    t.string   "password_digest"
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
   end
 
 end

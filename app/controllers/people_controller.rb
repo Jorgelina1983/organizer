@@ -4,7 +4,6 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-
     if session[:id].blank? # || User.find(session[:id]).nil?
       redirect_to '/login'
     end
@@ -34,8 +33,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to people_url, notice: 'La persona fue creada exitosamente.' }
-        format.json { render :show, status: :created, location: @person }
+        format.html { redirect_to people_url, notice: 'La persona fue creada exitosamente.' }        
       else
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -48,8 +46,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'La persona fue editada exitosamente.' }
-        format.json { render :show, status: :ok, location: @person }
+        format.html { redirect_to people_url, notice: 'La persona fue editada exitosamente.' }
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -68,11 +65,14 @@ class PeopleController < ApplicationController
   end
 
   def associated
-    if session[:id].blank? || User.find(session[:id]).nil?
-      redirect_to '/login'
-    end
+    @people = Person.where.not(associated_number: nil)
+                    .where.not(associated_number: 0)
+                    .order(:associated_number)
+  end
 
-    @people = Person.where(associated: true).order(:last_name)
+  def travelers
+    @people = Person.where(traveler: true)
+                    .order(:last_name)
   end
 
   private
@@ -83,15 +83,16 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit( :first_name, 
-                                      :last_name, 
-                                      :identification, 
-                                      :benefit, 
-                                      :cell_phone, 
-                                      :phone, 
-                                      :dob, 
-                                      :address, 
-                                      :associated,
+      params.require(:person).permit( :first_name,
+                                      :last_name,
+                                      :identification,
+                                      :benefit,
+                                      :cell_phone,
+                                      :phone,
+                                      :dob,
+                                      :address,
+                                      :address_number,
+                                      :traveler,
                                       :associated_number )
     end
 end

@@ -63,11 +63,13 @@ class UsersController < ApplicationController
   end
 
   def login    
-    user = User.new(user_params)  
-    
+    user = User.new(user_params)      
     if (user.username == 'centro' && user.password == '2017')
       session[:id] = 1
-      redirect_to people_url
+      flash[:success] = "Welcome #{user.username}!" 
+      redirect_to people_path
+    else
+      flash[:danger] = 'Invalid username/password combination.'
     end
 
   end

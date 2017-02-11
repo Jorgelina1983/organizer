@@ -1,7 +1,6 @@
 <%- model_class = Person -%>
 
-
-<%= render :partial => "layouts/search", :locals => { :title => "Listado de Personas (#{@people.count})"} %>
+<%= render :partial => "layouts/search", :locals => { :title => "Listado de Viajeros (#{@people.count})"} %>
 
 <%= link_to new_person_path, :class => 'btn btn-primary' do %>
   <span class="glyphicon glyphicon-plus white" aria-hidden="true"> </span>

@@ -1,11 +1,12 @@
 class Person < ActiveRecord::Base
+	has_many :person_lists
 	has_many :lists, :through => :person_lists
 
 	validates_presence_of :first_name, :last_name,  { :message => "Campo requerido."}
-	validates_presence_of :associated_number, :if => :is_associated?
+	# validates_presence_of :associated_number, :if => :is_associated?
 
 	def is_associated?
-		associated == true
+		!associated_number.blank?
 	end
 
 	def age		

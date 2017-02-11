@@ -1,24 +1,16 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'sessions/destroy'
-
   resources :schemas
   resources :lists
-  #resources :users
-  resources :logins
   resources :people
+
+  get 'associated', to: "people#associated"
+  get 'travelers', to: "people#travelers"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'login' => 'users#index'
-  post 'users' => 'users#login'
-
-  post 'index' => 'users#login'
-  get 'people/associated' => 'person#associated'
-
+ 
   # Paths for creating sessions.
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
