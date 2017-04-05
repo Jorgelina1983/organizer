@@ -32,7 +32,7 @@ test:
   username: rails
   password: rails
   host: localhost
-  
+
 # This environment is used on the staging server.
 production:
   adapter: mysql2
@@ -47,7 +47,7 @@ production:
   # database: stroke_stage_db
   # username: rails
   # password: rails
-  # host: localhost 
+  # host: localhost
 
 # # This environment is used on the production server.
 # production:
