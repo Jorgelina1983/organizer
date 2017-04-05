@@ -1,10 +1,10 @@
 <%- model_class = Person -%>
 
 
-<%= render :partial => "layouts/search", :locals => { :title => "Listado de Personas (#{@people.count})"} %>
+<%= render :partial => "layouts/search", :locals => { :title => "Listado de #{@title} (#{@people.count})"} %>
 
-<%= link_to new_person_path, :class => 'btn btn-primary' do %>
-  <span class="glyphicon glyphicon-plus white" aria-hidden="true"> </span>
+<%= link_to new_person_path, :class => 'btn btn-primary white' do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>
   Nueva
 <% end %>
 
@@ -12,7 +12,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>NroSoc </th> 
+      <th>NroSoc </th>
       <th>Apellido</th>
       <th>Nombre</th>
       <th>Direccion</th>
@@ -29,31 +29,48 @@
   <tbody class="searchable">
     <% @people.each do |person| %>
       <tr>
-        <td><%= person.associated_number == 0 ? "" : person.associated_number %></td>        
+        <td><%= person.associated_number == 0 ? "" : person.associated_number %></td>
         <td><%= person.last_name %></td>
         <td><%= person.first_name %></td>
-        <td><%= person.full_address %></td>  
+        <td><%= person.full_address %></td>
         <td><%= person.dob_formatted %></td>
-        <td><%= person.age %></td>   
+        <td><%= person.age %></td>
         <td><%= person.identification %></td>
         <td><%= person.phone %></td>
         <td><%= person.cell_phone %></td>
         <td><%= person.benefit %></td>
-        <td><%= person.traveler ? "SI" : "NO" %></td>        
+        <td><%= person.traveler ? "SI" : "NO" %></td>
         <td>
           <div style="width:100%;">
-            <%= link_to edit_person_path(person), :class => 'btn btn-info' do %>
-              <span class="glyphicon glyphicon-pencil white" aria-hidden="true"></span>
+            <%= link_to edit_person_path(person), :class => 'btn btn-info white' do %>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             <% end %>
             <%= link_to person_path(person), :method => :delete, :data => { :confirm => "Esta seguro?" }, :class => 'btn btn-danger' do %>
               <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
             <% end %>
-             <%= link_to person_path(person), :class => 'btn btn-success' do %>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addPeopleToList" id="person_<%= person.id %>">
               <span class="glyphicon glyphicon-plus white" aria-hidden="true"></span>
-            <% end %>
+            </button>
           </div>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= render 'add_to_list' %>
+
+<script>
+  $(function() {
+    $("button[id^='person_'").each(function(e){
+      $(this).click(function(){
+        add_person_to_list($(this)[0].id);
+      });
+    });
+  });
+
+  function add_person_to_list(person_id) {
+    alert('add it!' + $(this).attr('id'));
+    $('#addPeopleToList').show();
+  }
+</script>

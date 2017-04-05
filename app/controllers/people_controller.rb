@@ -8,8 +8,21 @@ class PeopleController < ApplicationController
       redirect_to '/login'
     end
 
-    @people = Person.all.order(:last_name)
-    #@people = Person.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    if params[:associated]
+      @people = Person.where.not(associated_number: nil)
+                      .where.not(associated_number: 0)
+                      .order(:associated_number)
+      @title = 'Asociados'
+    elsif params[:travelers]
+      @people = Person.where(traveler: true)
+                      .order(:last_name)
+      @title = 'Viajeros'
+    else
+      @people = Person.all.order(:last_name)
+      @title = 'Personas'
+    end
+
+    @lists = List.all
   end
 
   # GET /people/1
@@ -28,12 +41,11 @@ class PeopleController < ApplicationController
 
   # POST /people
   # POST /people.json
-  def create    
+  def create
     @person = Person.new(person_params)
-
     respond_to do |format|
       if @person.save
-        format.html { redirect_to people_url, notice: 'La persona fue creada exitosamente.' }        
+        format.html { redirect_to people_url, notice: 'La persona fue creada exitosamente.' }
       else
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -64,15 +76,10 @@ class PeopleController < ApplicationController
     end
   end
 
-  def associated
-    @people = Person.where.not(associated_number: nil)
-                    .where.not(associated_number: 0)
-                    .order(:associated_number)
-  end
-
-  def travelers
-    @people = Person.where(traveler: true)
-                    .order(:last_name)
+  # POST Add selected person to the selected list.
+  def add_to_list
+    person_id = params[:person_id]
+    list_id = params[:list_id]
   end
 
   private

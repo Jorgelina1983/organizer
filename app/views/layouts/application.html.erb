@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VIAJES CJSM</title>  
+  <title>VIAJES CJSM</title>
   <%= stylesheet_link_tag    "application.css", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  
+
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
     <span class="sr-only">Toggle navigation</span>
@@ -18,15 +18,15 @@
     </button>
     <a class="navbar-brand" rel="home" href="/" title="CJSM TURISMO">CJSM TURISMO</a>
   </div>
-  
+
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-    
-    <ul class="nav navbar-nav">    
-      <li><a href="/associated">Socios</a></li>
-      <li><a href="/travelers">Viajes</a></li> 
-      <li><a href="/lists">Listados</a></li>
-      <li><a href="/schemas">Esquemas</a></li>     
-    </ul>        
+
+    <ul class="nav navbar-nav">
+      <li> <%= link_to "Socios", people_path(:associated => true) %> </li>
+      <li> <%= link_to "Viajeros", people_path(:travelers => true) %> </li>
+      <li> <%= link_to "Listados", lists_path %> </li>
+      <li> <%= link_to "Esquemas", schemas_path %> </li>
+    </ul>
   </div>
 
 </div>
@@ -38,7 +38,7 @@
         <% end %>
         <% if flash[:error] %>
             <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
-        <% end %>     
+        <% end %>
         <%= yield %>
       </div>
     </div>
