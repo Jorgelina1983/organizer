@@ -35,12 +35,12 @@ test:
 
 # This environment is used on the staging server.
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
-  database: prod_sep30
-  username: rails
-  password: itt-2011
-  host: clinapps-db-train
+  database: organizer
+  username: root
+  password: sa
+  host:
 
   # adapter: mysql2
   # encoding: utf8
