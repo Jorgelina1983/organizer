@@ -75,5 +75,6 @@ class LoginsController < ApplicationController
       password = params[:password]
 
       if (CREDENTIALS[:username] == username && CREDENTIALS[:password] == password)
+      end
     end
 end
