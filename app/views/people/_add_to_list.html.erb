@@ -1,19 +1,22 @@
 <!-- Modal -->
 <div id="addPeopleToList" class="modal" role="dialog">
   <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Agregar al listado:</h4>
+    <%= form_tag '/add_to_list', :html => { :class => "form-horizontal person form-person" } do |f| %>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Agregar al listado:</h4>
+        </div>
+        <div class="modal-body">
+          <%= hidden_field :person, :id %>
+          <%= select_tag :person_to_list_id, options_from_collection_for_select(@lists, "id", "name"), { :class => 'form-control', prompt: "Select" } %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <%= submit_tag "Salvar", class: "btn btn-default" %>
+        </div>
       </div>
-      <div class="modal-body">
-        <%= select_tag :people_to_list_id, options_from_collection_for_select(@lists, "id", "name"), { :class => 'form-control', prompt: "Select" } %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Salvar</button>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

@@ -78,8 +78,11 @@ class PeopleController < ApplicationController
 
   # POST Add selected person to the selected list.
   def add_to_list
-    person_id = params[:person_id]
-    list_id = params[:list_id]
+    lists = List.find(params[:person_to_list_id])
+    person = Person.find(params[:person][:id])
+    person.lists << lists
+
+    redirect_to root_url
   end
 
   private
@@ -100,6 +103,7 @@ class PeopleController < ApplicationController
                                       :address,
                                       :address_number,
                                       :traveler,
-                                      :associated_number )
+                                      :associated_number,
+                                      :person_to_list_id )
     end
 end

@@ -57,7 +57,7 @@
     <% end %>
   </tbody>
 </table>
-
+<input type="hidden" id="person_">
 <%= render 'add_to_list' %>
 
 <script>
@@ -70,7 +70,7 @@
   });
 
   function add_person_to_list(person_id) {
-    alert('add it!' + $(this).attr('id'));
+    $('#person_id').val(person_id.split('_')[1]);
     $('#addPeopleToList').show();
   }
 </script>

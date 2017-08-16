@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  post '/add_to_list', to: 'people#add_to_list'
+
    # You can have the root of your site routed with "root"
   root 'people#index'
 
