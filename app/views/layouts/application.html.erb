@@ -24,8 +24,9 @@
     <ul class="nav navbar-nav">
       <li> <%= link_to "Socios", people_path(:associated => true) %> </li>
       <li> <%= link_to "Viajeros", people_path(:travelers => true) %> </li>
-      <li> <%= link_to "Listados", lists_path %> </li>
-      <li> <%= link_to "Esquemas", schemas_path %> </li>
+      <!-- <li> <%= link_to "Listados", lists_path %> </li>
+      <li> <%= link_to "Esquemas", schemas_path %> </li> -->
+      <li> <%= link_to "Log Out", logout_path, method: :delete %> </li>
     </ul>
   </div>
 

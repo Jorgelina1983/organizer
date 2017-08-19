@@ -4,16 +4,28 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @lists = List.all
   end
 
   # GET /lists/1
   # GET /lists/1.json
   def show
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
   end
 
   # GET /lists/new
   def new
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @list = List.new
   end
 
@@ -24,6 +36,10 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @list = List.new(list_params)
 
     respond_to do |format|

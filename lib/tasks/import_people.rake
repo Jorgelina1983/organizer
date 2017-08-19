@@ -6,12 +6,12 @@ namespace :import do
 
 	task :people, [:file_path] => :environment do |t, args|
 			puts 'Importing people to database of people.'
-			file_path = args[:file_path]		
-			CSV.foreach(file_path, headers: true) do |row|			
+			file_path = args[:file_path]
+			CSV.foreach(file_path, headers: true) do |row|
 				person = Person.new(row.to_hash)
-				person.first_name = person.first_name.titleize unless person.first_name.blank?
-				person.last_name = person.last_name.titleize unless person.last_name.blank?
-				person.address = person.address.titleize unless person.address.blank?
+				person.first_name = person.first_name.upcase unless person.first_name.blank?
+				person.last_name = person.last_name.upcase unless person.last_name.blank?
+				person.address = person.address.upcase unless person.address.blank?
 			  puts person.inspect
 			  person.save
 			end
@@ -22,8 +22,8 @@ namespace :import do
 	task :travelers, [:file_path] => :environment do |t, args|
 		puts 'Starting travelers import.'
 
-		file_path = args[:file_path]		
-			CSV.foreach(file_path, headers: true) do |row|			
+		file_path = args[:file_path]
+			CSV.foreach(file_path, headers: true) do |row|
 				person = Person.new(row.to_hash)
 
 				exist_person = Person.where(first_name: person.first_name,
@@ -33,7 +33,7 @@ namespace :import do
 					person.first_name = person.first_name.upcase unless person.first_name.blank?
 					person.last_name = person.last_name.upcase unless person.last_name.blank?
 					person.address = person.address.titleize unless person.address.blank?
-					person.traveler = true			  	
+					person.traveler = true
 			  	    person.save
 				else
 					puts 'Person already exist, updating information.'
@@ -58,7 +58,7 @@ namespace :import do
 
 	task :cap => :environment do |t, args|
 		puts "Capitalize people's strings."
-		Person.all.each do |person|			
+		Person.all.each do |person|
 			person.first_name = person.first_name.upcase unless person.first_name.blank?
 			person.last_name = person.last_name.upcase unless person.last_name.blank?
 			person.address = person.address.upcase unless person.address.blank?

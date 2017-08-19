@@ -4,6 +4,10 @@ class SchemasController < ApplicationController
   # GET /schemas
   # GET /schemas.json
   def index
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @schemas = Schema.all
   end
 
@@ -14,6 +18,10 @@ class SchemasController < ApplicationController
 
   # GET /schemas/new
   def new
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @schema = Schema.new
   end
 
@@ -24,6 +32,10 @@ class SchemasController < ApplicationController
   # POST /schemas
   # POST /schemas.json
   def create
+    if session[:id].blank? # || User.find(session[:id]).nil?
+      redirect_to '/login'
+    end
+
     @schema = Schema.new(schema_params)
 
     respond_to do |format|
