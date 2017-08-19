@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :schemas
   resources :lists
   resources :people
+  resources :users
 
   get 'associated', to: "people#index?filter=associated"
   get 'travelers', to: "people#travelers"

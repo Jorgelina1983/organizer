@@ -6,16 +6,14 @@ class SessionsController < ApplicationController
 
   # POST action creates a new session.
   def create
-    # user = User.find_by(username: params[:session][:username].downcase)
-    user = User.new(session_params) 
-    if (user.username == 'centro' && user.password == '2017')
-      # user && user.authenticate(params[:session][:password])
-      session[:id] = 1
+    user = User.find_by(username: params[:session][:username].downcase)
+    if user && user.authenticate(params[:session][:password])
+      session[:id] = user.id
       flash[:success] = "Bienvenido #{user.username}!"
       redirect_to people_path
     else
       flash[:danger] = 'Usuario/password incorrecto.'
-      render 'new'
+      redirect_to login_path
     end
   end
 
@@ -28,7 +26,7 @@ class SessionsController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.   
+  # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
     params.require(:session).permit(:username, :password)
   end
