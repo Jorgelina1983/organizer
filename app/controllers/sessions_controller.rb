@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
+
   # GET Controller action.
   def new
     render 'new', :layout => false
@@ -9,10 +11,10 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:session][:username].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:id] = user.id
-      flash[:success] = "Bienvenido #{user.username}!"
+      flash.now[:success] = "Bienvenido #{user.username}!"
       redirect_to people_path
     else
-      flash[:danger] = 'Usuario/password incorrecto.'
+      flash.now[:danger] = 'Usuario/password incorrecto.'
       redirect_to login_path
     end
   end

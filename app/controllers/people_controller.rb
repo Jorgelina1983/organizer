@@ -4,10 +4,6 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    if session[:id].blank? # || User.find(session[:id]).nil?
-      redirect_to '/login'
-    end
-
     if params[:associated]
       @people = Person.where.not(associated_number: nil)
                       .where.not(associated_number: 0)
