@@ -27,7 +27,7 @@ gem 'twitter-bootstrap-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'rubocop', '0.42.0'
+gem 'rubocop', '0.48.1'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
