@@ -1,7 +1,7 @@
-class CreatePeople < ActiveRecord::Migration
+class CreatePeople < ActiveRecord::Migration[4.2]
   def self.up
     create_table :people do |t|
-    	
+
       t.string :first_name
       t.string :last_name
       t.string :identification
@@ -12,7 +12,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :address
       t.string :address_number
       t.boolean :associated, null: false, default: false
-       
+
       t.timestamps null: false
     end
   end

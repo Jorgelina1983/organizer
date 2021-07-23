@@ -1,4 +1,4 @@
-class AddAssociatedNumberColumnToPeople < ActiveRecord::Migration
+class AddAssociatedNumberColumnToPeople < ActiveRecord::Migration[4.2]
   def self.up
   	add_column :people, :associated_number, :integer, :null => false, :default => 0
   end

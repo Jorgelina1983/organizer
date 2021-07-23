@@ -22,7 +22,6 @@
       <th>Fijo</th>
       <th>Celular</th>
       <th>Beneficio</th>
-      <th>V</th>
       <th>****Acciones****</th>
     </tr>
   </thead>
@@ -39,7 +38,6 @@
         <td><%= person.phone %></td>
         <td><%= person.cell_phone %></td>
         <td><%= person.benefit %></td>
-        <td><%= person.traveler ? "SI" : "NO" %></td>
         <td>
           <div style="width:100%;">
             <%= link_to edit_person_path(person), :class => 'btn btn-info white' do %>

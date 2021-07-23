@@ -4,7 +4,7 @@
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
         <h3 class="panel-title"> Corrija los errores: </h3>
-      </div>      
+      </div>
     </div>
   <% end %>
   <div class="form-group">
@@ -71,13 +71,20 @@
     </div>
     <%=f.error_span(:address_number) %>
   </div>
-  <div class="form-group">
-    <%= f.label :traveler, "Viajero", :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.check_box :traveler, :class => 'associated-chkbox form-control' %>
-    </div>
-    <%=f.error_span(:traveler) %>
-  </div>
+	<div class="form-group">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-5">
+			<%= f.label :traveler, "Viajero", :class => 'control-label col-lg-2' %>
+				<%= f.check_box :traveler, :class => 'associated-chkbox form-control' %>
+			<%=f.error_span(:traveler) %>
+		</div>
+		<div class="col-sm-5">
+			<%= f.label :patient, "Paciente", :class => 'control-label col-lg-2' %>
+				<%= f.check_box :patient, :class => 'associated-chkbox form-control' %>
+			<%=f.error_span(:patient) %>
+		</div>
+	</div>
   <div class="form-group">
     <%= f.label :associated_number, "Nro. Socio", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

@@ -13,6 +13,9 @@ class PeopleController < ApplicationController
       @people = Person.where(traveler: true)
                       .order(:last_name)
       @title = 'Viajeros'
+		elsif params[:patients]
+			@people = Person.where(patient: true)
+											.order(:last_name)
     else
       @people = Person.all.order(:last_name)
       @title = 'Personas'
@@ -100,6 +103,7 @@ class PeopleController < ApplicationController
                                       :address_number,
                                       :traveler,
                                       :associated_number,
-                                      :person_to_list_id )
+                                      :person_to_list_id,
+																			:patient )
     end
 end

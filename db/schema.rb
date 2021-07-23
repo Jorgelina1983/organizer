@@ -2,69 +2,68 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116031512) do
+ActiveRecord::Schema.define(version: 2021_07_23_124816) do
 
-  create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "name",       null: false
-    t.integer  "schema_id"
-    t.string   "columns"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "lists", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "schema_id"
+    t.string "columns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "logins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "people", id: :serial, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "identification"
+    t.string "benefit"
+    t.string "cell_phone"
+    t.string "phone"
+    t.date "dob"
+    t.string "address"
+    t.string "address_number"
+    t.boolean "traveler", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "associated_number", default: 0, null: false
+    t.boolean "patient", default: false
+  end
+
+  create_table "person_lists", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "person_id"
+    t.integer "list_id"
+    t.integer "position"
+    t.index ["list_id"], name: "index_person_lists_on_list_id"
+    t.index ["person_id"], name: "index_person_lists_on_person_id"
+  end
+
+  create_table "schemas", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "seats", null: false
+    t.string "company"
+    t.string "seats_schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "identification"
-    t.string   "benefit"
-    t.string   "cell_phone"
-    t.string   "phone"
-    t.date     "dob"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "address"
-    t.string   "address_number"
-    t.boolean  "traveler",          default: false, null: false
-    t.integer  "associated_number", default: 0
-  end
-
-  create_table "person_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "person_id"
-    t.integer  "list_id"
-    t.integer  "position"
-    t.index ["list_id"], name: "index_person_lists_on_list_id", using: :btree
-    t.index ["person_id"], name: "index_person_lists_on_person_id", using: :btree
-  end
-
-  create_table "schemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string   "name",         null: false
-    t.integer  "seats",        null: false
-    t.string   "company"
-    t.string   "seats_schema"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
   end
 
 end
