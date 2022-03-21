@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_form_list]
 
   # GET /lists
   # GET /lists.json
@@ -8,7 +8,7 @@ class ListsController < ApplicationController
       redirect_to '/login'
     end
 
-    @lists = List.all
+    @lists = List.all.order(:departure)
   end
 
   # GET /lists/1
@@ -77,6 +77,12 @@ class ListsController < ApplicationController
     end
   end
 
+  def delete_form_list
+    @list.person_lists.where(person_id: params[:person_id]).destroy_all
+
+    render :show
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
@@ -85,6 +91,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params[:list]
+      params.require(:list).permit(:name, :schema_id, :departure)
     end
 end

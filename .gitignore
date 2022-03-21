@@ -22,3 +22,4 @@
 *.csv
 .byebug_history
 .rake_tasks~
+.tool-versions

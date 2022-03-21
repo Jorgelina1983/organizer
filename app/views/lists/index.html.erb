@@ -6,27 +6,28 @@
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Esquema</th>
-      <th>Columnas</th>
+      <th>Asientos</th>
+      <th>Salida</th>
+      <th>Pasajeros</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= link_to list.id, list_path(list) %></td>
-        <td><%= list.name %></td>
+        <td><%= link_to list.name, list_path(list) %></td>
         <td><%= list.schema_id %></td>
-        <td><%= list.columns %></td>
+        <td><%= list.departure %></td>
+        <td><%= list.passengers %></td></td>
         <td>
           <div style="width:100%;">
           <%= link_to list_path(list), :class => 'btn btn-success' do %>
             <span class="glyphicon glyphicon-eye-open white" aria-hidden="true"></span>
           <% end %>
-          <%= link_to list_path(list), :class => 'btn btn-info' do %>
+          <%= link_to edit_list_path(list), :class => 'btn btn-info' do %>
             <span class="glyphicon glyphicon-pencil white" aria-hidden="true"></span>
           <% end %>
-          <%= link_to list_path(list), :method => :delete, :data => { :confirm => "Esta seguro?" }, :class => 'btn btn-danger' do %>
+          <%= link_to list_path(list), :method => :delete, :data => { :confirm => "Esta seguro que desea eliminar el listado?" }, :class => 'btn btn-danger' do %>
             <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
           <% end %>
           </div>
