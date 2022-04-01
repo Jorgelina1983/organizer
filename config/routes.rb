@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   post '/add_to_list', to: 'people#add_to_list'
-  delete '/lists/:id/people/:person_id', to: 'lists#delete_form_list', as: 'delete_person_form_list'
+  delete '/lists/:id/people/:person_id', to: 'lists#delete_from_list', as: 'delete_person_form_list'
 
    # You can have the root of your site routed with "root"
   root 'people#index'

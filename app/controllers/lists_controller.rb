@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_form_list]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete_from_list]
 
   # GET /lists
   # GET /lists.json
@@ -77,8 +77,8 @@ class ListsController < ApplicationController
     end
   end
 
-  def delete_form_list
-    @list.person_lists.where(person_id: params[:person_id]).destroy_all
+  def delete_from_list
+    @list.person_lists.where(person_id: params[:person_id]).first.destroy
 
     render :show
   end
